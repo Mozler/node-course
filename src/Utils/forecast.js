@@ -9,7 +9,10 @@ const forecast = (lat, long, callback) => {
     } else if (body.error) {
       callback("unable to find the weather data", undefined);
     } else {
-      callback(undefined, `${body.current.temperature} celcius.`);
+      callback(
+        undefined,
+        `${body.current.temperature} celcius. Humidity is ${body.current.humidity}%.`
+      );
     }
   });
 };
