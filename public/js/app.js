@@ -6,17 +6,15 @@ weatherForm.addEventListener("submit", (e) => {
   e.preventDefault();
   msgOne.textContent = "loading...";
   msgTwo.textContent = "";
-  fetch("http://localhost:3000/weather?address=" + searchLocation.value).then(
-    (response) => {
-      response.json().then((data) => {
-        if (data.error) {
-          msgOne.textContent = data.error;
-        } else {
-          msgOne.textContent = data.location;
-          msgTwo.textContent = data.temperature;
-        }
-      });
-    }
-  );
+  fetch("/weather?address=" + searchLocation.value).then((response) => {
+    response.json().then((data) => {
+      if (data.error) {
+        msgOne.textContent = data.error;
+      } else {
+        msgOne.textContent = data.location;
+        msgTwo.textContent = data.temperature;
+      }
+    });
+  });
   searchLocation.value = "";
 });
